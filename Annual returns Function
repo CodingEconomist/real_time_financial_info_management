@@ -1,0 +1,10 @@
+def andre_annual_return(ticker_name, start_date):
+    data = load_data(ticker_name, start_date)
+    data['daily_returns'] = data['Adj Close'].pct_change()*100
+    data['total_returns']=((data["Adj Close"][-1]-data["Adj Close"][0])/data["Adj Close"][0])
+    number_years=(len(data)/252)
+    data["annual_return"]=(((data["Adj Close"][-1]/data["Adj Close"][0])**(1/number_years))-1)*100
+    annual_return=data["annual_return"]
+    data["number_of_years"]=(len(data)/252)
+    return(data)
+    return round(annual_return, 2) 
